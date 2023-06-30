@@ -12,5 +12,7 @@ namespace OpenTabletDriver.Tablet
         /// The states of all express keys.
         /// </summary>
         bool[] AuxButtons { set; get; }
+
+        bool ButtonSupportsReleaseEvent(int buttonIndex) => true;
     }
 }

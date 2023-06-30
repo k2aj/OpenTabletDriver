@@ -20,10 +20,19 @@ namespace OpenTabletDriver.Configurations.Parsers.XP_Pen
                 report[index].IsBitSet(7),
                 report[index + 1].IsBitSet(0),
                 report[index + 1].IsBitSet(1),
+                
+                // outer wheel for XP-Pen Deco Pro Medium
+                // clockwise rotation
+                (index + 5 < report.Length) && report[index + 5].IsBitSet(0),
+                // counter-clockwise rotation
+                (index + 5 < report.Length) && report[index + 5].IsBitSet(1)
             };
         }
 
         public bool[] AuxButtons { set; get; }
         public byte[] Raw { set; get; }
+
+        bool IAuxReport.ButtonSupportsReleaseEvent(int buttonIndex) =>
+            buttonIndex != 10 && buttonIndex != 11;
     }
 }

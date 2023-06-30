@@ -209,7 +209,7 @@
 | XP-Pen Deco 01 V2 (variant 2) |  Missing Features | Tilt is not yet supported
 | XP-Pen Deco 02                |  Missing Features | Wheel is not yet supported.
 | XP-Pen Deco 03                |  Missing Features | Wheel is not yet supported.
-| XP-Pen Deco Pro Medium        |  Missing Features | Tilt and wheel are not yet supported.
+| XP-Pen Deco Pro Medium        |  Missing Features | Tilt and touch wheel are not yet supported. Physical wheel is treated as 2 express keys.
 | XP-Pen Deco Pro Small         |  Missing Features | Tilt and wheel are not yet supported.
 | XP-Pen Deco Pro SW            |  Missing Features | Wheel is not yet supported.
 | XP-Pen Innovator 16           |  Missing Features | Wheel is not yet supported.
