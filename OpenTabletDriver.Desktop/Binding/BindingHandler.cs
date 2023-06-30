@@ -20,12 +20,6 @@ namespace OpenTabletDriver.Desktop.Binding
             _serviceProvider = serviceProvider;
             _device = device;
 
-            var outputMode = _device.OutputMode!;
-
-            // Force consume all reports from the last element
-            var lastElement = outputMode.Elements?.LastOrDefault() ?? (IPipelineElement<IDeviceReport>)outputMode;
-            lastElement.Emit += Consume;
-
             Tip = CreateBindingState<ThresholdBindingState>(settings.TipButton, device, mouseButtonHandler);
 
             if (Tip != null)
@@ -107,6 +101,17 @@ namespace OpenTabletDriver.Desktop.Binding
         private void HandleAuxiliaryReport(IAuxReport report)
         {
             HandleBindingCollection(report, AuxButtons, report.AuxButtons);
+
+            for(var button = 0; button < report.AuxButtons.Length; button++)
+            {
+                if(
+                    report.AuxButtons[button] && 
+                    !report.ButtonSupportsReleaseEvent(button) &&
+                    AuxButtons.TryGetValue(button, out var binding)
+                ) {
+                    binding?.Invoke(report, false);
+                }
+            }
         }
 
         private void HandleMouseReport(IMouseReport report)
